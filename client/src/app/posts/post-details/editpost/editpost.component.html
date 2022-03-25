@@ -1,0 +1,55 @@
+<form [formGroup]="profileForm" class="form-container">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>POST UPDATE</mat-card-title>
+    </mat-card-header>
+    <div *ngFor="let post of postList">
+      <mat-card-content>
+        <div class="row">
+          <div class="col-md-6">
+            <mat-form-field class="full-width">
+              <mat-card-title>Title</mat-card-title>
+              <input formControlName="title" matInput />
+            </mat-form-field>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Upload File:</label>
+              <div *ngIf="ImageURL && ImageURL !== ''">
+                <img
+                  src="{{ ImageURL }}"
+                  width="250px"
+                  height="100px"
+                  alt="url
+               error"
+                  style="display: flex"
+                />
+              </div>
+              <input
+                (change)="onFileSelected($event)"
+                type="file"
+                accept="image/*"
+                class="form-control"
+                formControlName="picture"
+                name="picture"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6">
+            <mat-form-field class="full-width">
+              <mat-card-title>Description</mat-card-title>
+              <textarea formControlName="description" matInput></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+      </mat-card-content>
+    </div>
+    <mat-card-actions>
+      <button (click)="saveForm()" mat-raised-button color="primary">
+        Save
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</form>

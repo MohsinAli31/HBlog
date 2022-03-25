@@ -1,0 +1,54 @@
+<!-- <p>dashboard works!</p> -->
+<mat-sidenav-container class="example-container">
+  <mat-sidenav #sideNav class="sidenav" mode="side" opened>
+    <app-side-bar></app-side-bar>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar>
+      <button
+        mat-icon-button
+        class="example-icon"
+        aria-label="Example icon-button with menu icon"
+        (click)="sideNav.toggle()"
+      >
+        <mat-icon aria-hidden="false" aria-label="Example home icon"
+          >menu</mat-icon
+        >
+      </button>
+
+      <button
+        style="size: 20px"
+        [routerLink]="['/dashboard']"
+        routerLinkActive="active"
+        mat-icon-button
+        color="primary"
+        aria-label="Example icon button with a home icon"
+        style="background: #f6faff; margin: 10px"
+      >
+        <mat-icon>home</mat-icon>
+      </button>
+    </mat-toolbar>
+    <!-- <mat-toolbar>
+      <button
+        style="background: #004a9f"
+        (click)="sideNav.toggle()"
+        mat-flat-button
+      >
+        <mat-icon aria-hidden="false" aria-label="Example home icon"
+          >menu</mat-icon
+        >
+      </button>
+      <span class="example-fill-remaining-space"></span>
+      <span class="user-text"> </span>
+      <button class="mat-button"></button>
+    </mat-toolbar> -->
+    <div class="main-cont"><router-outlet></router-outlet></div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+<!-- <section>
+  <div class="example-label">Basic</div>
+  <div class="example-button-row">
+    <button mat-button color="warn" (click)="logout()">Logout</button>
+  </div>
+</section> -->

@@ -1,0 +1,107 @@
+<form [formGroup]="profileForm" class="form-container">
+  <mat-card class="container">
+    <mat-card-header>
+      <mat-card-title *ngIf="profile == false">
+        Create User Profile</mat-card-title
+      >
+      <mat-card-title *ngIf="profile == true">
+        Update User Profile</mat-card-title
+      >
+    </mat-card-header>
+    <mat-card-content>
+      <div class="example-container">
+        <mat-form-field>
+          <input
+            formControlName="phonenumber"
+            matInput
+            placeholder="Phone Number"
+            name="phonenumber"
+          />
+        </mat-form-field>
+
+        <mat-form-field>
+          <textarea
+            matInput
+            name="bio"
+            placeholder="Bio Data"
+            formControlName="bio"
+          ></textarea>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-select
+            placeholder="Select Gender"
+            name="gender"
+            formControlName="gender"
+          >
+            <mat-option value="Male">Male</mat-option>
+            <mat-option value="Female">Female</mat-option>
+            <mat-option value="Other">Other</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <div *ngIf="ImageURL && ImageURL !== ''">
+          <img
+            src="{{ ImageURL }}"
+            style="width: 200px; height: 150px; display: flex"
+          />
+        </div>
+        <input
+          (change)="onFileSelected($event)"
+          type="file"
+          accept="image/*"
+          class="form-control"
+          name="picture"
+        />
+
+        <button (click)="saveForm()" mat-raised-button color="primary">
+          <div *ngIf="profile == false">Save</div>
+          <div *ngIf="profile == true">Update</div>
+        </button>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</form>
+
+<!-- <form [formGroup]="profileForm" class="form-container">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Create New Post</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="row">
+        <div class="col-md-6">
+          <mat-form-field class="full-width">
+            <input formControlName="title" matInput placeholder="Title" />
+          </mat-form-field>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Upload File:</label>
+            <input
+              type="file"
+              formControlName="picture"
+              (change)="onFileSelected($event)"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <mat-form-field class="full-width">
+            <textarea
+              formControlName="description"
+              matInput
+              placeholder="description"
+            ></textarea>
+          </mat-form-field>
+        </div>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button (click)="saveForm()" mat-raised-button color="primary">
+        Save
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</form> -->

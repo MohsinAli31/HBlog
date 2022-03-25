@@ -1,0 +1,124 @@
+<!-- <div class="profile-info">
+  <div class="user-img">
+    <a [routerLink]="['/userProfile']" routerLinkActive="active">
+      <img src="{{ image }}" alt="user" />
+    </a>
+  </div>
+  <p class="title">{{ login }}</p>
+</div>
+
+<mat-nav-list>
+  <a mat-list-item [routerLink]="['/dashboard']" routerLinkActive="active"
+    >Posts</a
+  >
+
+  <a mat-list-item [matMenuTriggerFor]="menu">
+    Category
+
+    <mat-menu #menu="matMenu">
+      <div *ngFor="let item of list2.data">
+        <button (click)="showCategory(item.id)" mat-menu-item color="primary">
+          <a [routerLink]="['category/', item.id]" routerLinkActive="active">
+            {{ item.categoryname }}
+          </a>
+        </button>
+      </div>
+    </mat-menu>
+  </a>
+
+  <a mat-list-item [routerLink]="['/table']" routerLinkActive="active">Table</a>
+
+  <a mat-list-item [routerLink]="['/createProfile']" routerLinkActive="active"
+    >Create/Update Profile</a
+  >
+  <div class="example-button-row"></div>
+  <div *ngIf="flag">
+    <button mat-button color="warn" (click)="logout()">
+      <div>Logout</div>
+    </button>
+  </div>
+  <div *ngIf="!flag">
+    <button mat-button color="primary" (click)="loginNow()">
+      <div>Login</div>
+    </button>
+  </div>
+</mat-nav-list> -->
+
+<mat-sidenav-container>
+  <mat-sidenav #sidenav="matSidenav" class="mat-elevation-z8">
+    <img
+      [routerLink]="['/userProfile']"
+      routerLinkActive="active"
+      class="avatar mat-elevation-z8"
+      src="{{ image }}"
+    />
+
+    <h4 class="name">{{ login | uppercase }}</h4>
+
+    <mat-divider></mat-divider>
+
+    <button mat-button class="menu-button">
+      <mat-icon>details</mat-icon>
+      <!-- <a mat-list-item [routerLink]="['/dashboard']" routerLinkActive="active"
+        >Posts</a
+      > -->
+      <span
+        mat-list-item
+        [routerLink]="['/dashboard']"
+        routerLinkActive="active"
+        >POSTS</span
+      >
+    </button>
+    <button mat-button class="menu-button">
+      <mat-icon>subject</mat-icon>
+      <!-- <span>Category</span> -->
+      <span mat-list-item [matMenuTriggerFor]="menu">
+        CATEGORY
+
+        <mat-menu #menu="matMenu">
+          <div *ngFor="let item of list2.data">
+            <button
+              (click)="showCategory(item.id)"
+              mat-menu-item
+              color="primary"
+            >
+              <a
+                [routerLink]="['category/', item.id]"
+                routerLinkActive="active"
+              >
+                {{ item.categoryname }}
+              </a>
+            </button>
+          </div>
+        </mat-menu>
+      </span>
+    </button>
+    <button
+      [routerLink]="['/createProfile']"
+      routerLinkActive="active"
+      mat-button
+      class="menu-button"
+    >
+      <mat-icon>create</mat-icon>
+      <span>Create/Update Profile</span>
+    </button>
+    <button *ngIf="flag" mat-button class="menu-button" (click)="logout()">
+      <mat-icon>logout</mat-icon>
+      <span>Logout</span>
+    </button>
+    <button *ngIf="!flag" mat-button class="menu-button" (click)="loginNow()">
+      <mat-icon>login</mat-icon>
+      <span>LogIn</span>
+    </button>
+
+    <mat-divider></mat-divider>
+
+    <button mat-button class="menu-button">
+      <mat-icon>help</mat-icon>
+      <span>Help</span>
+    </button>
+  </mat-sidenav>
+  <!-- <mat-sidenav-content>
+    <div class="content mat-elevation-z8">Main content here!</div>
+  </mat-sidenav-content> -->
+</mat-sidenav-container>

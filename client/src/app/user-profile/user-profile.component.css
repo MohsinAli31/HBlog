@@ -1,0 +1,9 @@
+.userProfile {
+  width: 95%;
+  height: 600px;
+}
+.mat-card-image {
+  width: 90%;
+  height: 400px;
+  margin: 10px 10px 30px 45px;
+}

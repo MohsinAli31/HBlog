@@ -1,0 +1,43 @@
+<div class="post">
+  <button
+    [routerLink]="['/createPost']"
+    routerLinkActive="active"
+    mat-stroked-button
+    style="background-color: #004a9f; margin-left: 10px"
+  >
+    Create New Post
+  </button>
+
+  <mat-grid-list class="dis" cols="2" rowHeight="2:1" gutterSize="20px">
+    <div *ngFor="let item of list">
+      <div *ngFor="let list of item">
+        <mat-card class="example-cardd">
+          <mat-card-header>
+            <mat-card-title>{{ list.title | uppercase }}</mat-card-title>
+            <!-- <mat-card-subtitle class="description"></mat-card-subtitle> -->
+          </mat-card-header>
+
+          <img
+            mat-card-image
+            src="{{ list.picture.replace('images', 'http://localhost:8000') }} "
+            alt="Photo "
+          />
+          <mat-card-content class="desp">
+            <p>
+              {{ list.description }}
+            </p>
+          </mat-card-content>
+          <mat-card-actions>
+            <button
+              mat-button
+              [routerLink]="['/post/', list.id]"
+              routerLinkActive="active"
+            >
+              Details
+            </button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </div>
+  </mat-grid-list>
+</div>

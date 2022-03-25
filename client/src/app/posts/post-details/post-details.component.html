@@ -1,0 +1,126 @@
+<mat-grid-list class="dis" cols="2" rowHeight="2:1" gutterSize="20px">
+  <div *ngFor="let item of list">
+    <!-- <div *ngFor="let list of item"> -->
+    <mat-card class="example-cardd">
+      <mat-card-header>
+        <mat-card-title>{{ item.title | uppercase }}</mat-card-title>
+        <!-- <mat-card-subtitle></mat-card-subtitle> -->
+      </mat-card-header>
+
+      <img
+        mat-card-image
+        src="{{ item.picture.replace('images', 'http://localhost:8000') }} "
+        alt="Photo "
+      />
+      <mat-card-content class="desp">
+        <p>
+          {{ item.description }}
+        </p>
+      </mat-card-content>
+      <mat-card-actions class="actions">
+        <!-- <div *ngFor="let li of likeList"> -->
+        <button mat-button (click)="likedPost()">
+          <!-- <div *ngIf="li.postId == post.id"> -->
+          Like <span *ngIf="likeCount !== 0">{{ likeCount }} </span>
+          <!-- </div> -->
+        </button>
+        <!-- </div> -->
+        <!-- <button mat-button>SHARE</button> -->
+        <span class="editDelete">
+          <button
+            mat-button
+            [routerLink]="['/post/edit', item.id]"
+            routerLinkActive="active"
+          >
+            Edit Post
+          </button>
+          <button mat-flat-button (click)="onDelete(item.id)" color="warn">
+            Delete
+          </button>
+        </span>
+        <!-- <button
+          mat-button
+          [routerLink]="['/post/delete', item.id]"
+          routerLinkActive="active"
+        >
+          Delete Post
+        </button> -->
+      </mat-card-actions>
+    </mat-card>
+
+    <!-- //////////////////Comment Section//////////////////// -->
+
+    <!-- <hr /> -->
+
+    <div class="form-group" style="max-width: 90%">
+      <form [formGroup]="commentForm" class="form-container">
+        <br />
+        <!-- <label> <h2>Leave a Reply</h2></label> -->
+        <textarea
+          class="form-control"
+          formControlName="commenttext"
+          placeholder="Comment Here"
+        ></textarea>
+        <br />
+        <button
+          (click)="saveForm()"
+          mat-flat-button
+          style="background: #004a9f"
+        >
+          Comment
+        </button>
+        <!-- <button ng-click="btn_post();">Comment</button> -->
+        <br />
+        <hr />
+        <h3>Comments</h3>
+        <ul class="list-group">
+          <li class="list-group-item" ng-repeat="cmt in comments">
+            <!-- here the list come -->
+            <div *ngFor="let com of commentList">
+              {{ com.commenttext }}
+              <div *ngIf="editId === com.id && display == true">
+                <form
+                  [formGroup]="updateForm"
+                  (ngSubmit)="handleSubmit($event, com.id)"
+                >
+                  <input
+                    type="text"
+                    formControlName="commenttext"
+                    value="{{ com.commenttext }}"
+                    placeholder="edit comment"
+                    (keyup)="handleKeyUp($event, com.id)"
+                  />
+                </form>
+              </div>
+
+              <button
+                style="position: right"
+                mat-button
+                [matMenuTriggerFor]="menu"
+              >
+                <mat-icon
+                  *ngIf="com.userId == LoginUserId"
+                  aria-hidden="false"
+                  aria-label="Example home icon"
+                  >more_vert</mat-icon
+                >
+              </button>
+              <mat-menu #menu="matMenu">
+                <button (click)="onedit(com.id)" mat-menu-item>Edit</button>
+                <button (click)="deleteComments(com.id)" mat-menu-item>
+                  Delete
+                </button>
+              </mat-menu>
+              <a href="" ng-click="post_cmt($home)"
+                ><span style="color: red; float: right"></span
+              ></a>
+            </div>
+          </li>
+        </ul>
+      </form>
+    </div>
+
+    <!-- ///////////////////////////////////////////// -->
+  </div>
+  <!-- </div> -->
+</mat-grid-list>

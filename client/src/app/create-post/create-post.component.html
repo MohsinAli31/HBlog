@@ -1,0 +1,57 @@
+<form [formGroup]="profileForm" class="form-container">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Create New Post</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="row">
+        <div class="col-md-6">
+          <mat-form-field class="full-width">
+            <input formControlName="title" matInput placeholder="Title" />
+          </mat-form-field>
+        </div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <label>Upload File:</label>
+            <input
+              (change)="onFileSelected($event)"
+              type="file"
+              class="form-control"
+              formControlName="picture"
+              name="picture"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6">
+          <mat-form-field class="full-width">
+            <textarea
+              formControlName="description"
+              matInput
+              placeholder="description"
+            ></textarea>
+          </mat-form-field>
+        </div>
+      </div>
+      <div>
+        <mat-form-field>
+          <mat-select placeholder="Select" formControlName="categoryId">
+            <div *ngFor="let item of catagoryList">
+              <mat-option value="{{ item.id }}">
+                <div>
+                  {{ item.categoryname }}
+                </div>
+              </mat-option>
+            </div>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </mat-card-content>
+    <mat-card-actions>
+      <button (click)="saveForm()" mat-raised-button color="primary">
+        Save
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</form>

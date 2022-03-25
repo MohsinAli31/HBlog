@@ -1,0 +1,47 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="text-center">
+          <h1>Login</h1>
+          <h4>Please Enter email and password</h4>
+        </div>
+        <form>
+          <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <div class="mb-3">
+              <label for="email" class="form-label">Email address</label>
+              <input
+                type="email"
+                formControlName="email"
+                required
+                class="form-control"
+                name="email"
+                id="email"
+                aria-describedby="emailHelp"
+              />
+              <div id="emailHelp" class="form-text">
+                We'll never share your email with anyone else.
+              </div>
+            </div>
+            <div class="mb-3">
+              <label for="password" class="form-label">Password</label>
+              <input
+                type="password"
+                formControlName="password"
+                required
+                name="password"
+                class="form-control"
+                id="password"
+              />
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+          <a style="color: aliceblue" routerLink="/signup"
+            >A New User ? click to Signup</a
+          >
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
